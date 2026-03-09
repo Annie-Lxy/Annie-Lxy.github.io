@@ -3,143 +3,436 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人主页 | 陆馨瑶</title>
-    <link rel="stylesheet" href="style.css">
+    <title>陆馨瑶 · 金融学</title>
+    <!-- 使用简单柔和的 CSS，干净清爽，适合学术/求职风格 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            line-height: 1.5;
+            color: #0f172a;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.1), 0 8px 16px -6px rgba(0,0,0,0.02);
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.2s;
+            border: 1px solid #e9eef2;
+        }
+        /* 语言切换按钮 */
+        .lang-toggle {
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+            display: flex;
+            gap: 0.5rem;
+            background: #f1f5f9;
+            padding: 0.25rem;
+            border-radius: 40px;
+            border: 1px solid #dbe0e5;
+        }
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            color: #475569;
+            transition: 0.15s;
+            letter-spacing: 0.3px;
+        }
+        .lang-btn.active {
+            background: white;
+            color: #0f172a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            font-weight: 600;
+            border: 1px solid #cdd5db;
+        }
+        /* 头部 */
+        .header {
+            margin-bottom: 2.2rem;
+            padding-right: 120px; /* 给切换按钮留空间 */
+        }
+        .name {
+            font-size: 2.8rem;
+            font-weight: 650;
+            letter-spacing: -0.02em;
+            color: #0b1e33;
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+        }
+        .subhead {
+            font-size: 1.2rem;
+            font-weight: 420;
+            color: #2c3e5c;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .badge {
+            background: #e9f0f9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #25597e;
+            font-weight: 500;
+            border: 1px solid #bfd2e6;
+        }
+        /* 布局：两列 */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        /* 卡片区块 */
+        .section {
+            background: #f9fcff;
+            border-radius: 22px;
+            padding: 1.4rem 1.6rem 1.8rem 1.6rem;
+            margin-bottom: 1.4rem;
+            border: 1px solid #dee7ef;
+            transition: 0.1s;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 620;
+            letter-spacing: -0.2px;
+            margin-bottom: 1.1rem;
+            color: #19344f;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-left: 5px solid #527a9b;
+            padding-left: 0.9rem;
+        }
+        .info-item {
+            margin-bottom: 0.8rem;
+        }
+        .info-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            color: #5f6f82;
+            margin-bottom: 0.2rem;
+        }
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 500;
+            word-break: break-word;
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.3rem;
+        }
+        .skill-tag {
+            background: white;
+            border: 1px solid #bdcad9;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1d394e;
+        }
+        .edu-item {
+            margin-bottom: 1rem;
+        }
+        .edu-school {
+            font-weight: 650;
+            font-size: 1.05rem;
+        }
+        .edu-meta {
+            font-size: 0.9rem;
+            color: #45617b;
+            margin-top: 0.1rem;
+        }
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 0.3rem;
+            font-size: 1rem;
+        }
+        .email-icon {
+            background: #dde5ed;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .last-updated {
+            margin-top: 2rem;
+            text-align: right;
+            font-size: 0.8rem;
+            color: #73889c;
+            border-top: 1px dashed #c7d5e3;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #d7e2eb;
+            margin: 0.8rem 0;
+        }
+        .intro-text {
+            font-size: 1.05rem;
+            background: white;
+            padding: 1rem 1.2rem;
+            border-radius: 18px;
+            border: 1px solid #dae3ed;
+            color: #1a3349;
+            margin-bottom: 1.2rem;
+        }
+        /* 响应式 */
+        @media (max-width: 650px) {
+            .container { padding: 1.8rem; }
+            .lang-toggle { position: static; justify-content: flex-end; margin-bottom: 1rem; }
+            .header { padding-right: 0; }
+            .main-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+            .name { font-size: 2.2rem; }
+        }
+    </style>
 </head>
 <body>
-    <!-- 语言切换按钮 -->
-    <div class="language-switcher">
-        <button onclick="switchLanguage('zh')" class="lang-btn active">中文</button>
-        <button onclick="switchLanguage('en')" class="lang-btn">English</button>
+
+<div class="container" id="mainContainer">
+
+    <!-- 中英切换按钮 -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-zh" onclick="switchLang('zh')">🇨🇳 中文</button>
+        <button class="lang-btn" id="btn-en" onclick="switchLang('en')">🇬🇧 English</button><按钮 class="lang-btn" id="btn-en" onclick="switchLang('en')">英语</按钮>
     </div>
 
-    <!-- 中文内容 -->
-    <div id="content-zh" class="content active">
-        <div class="container">
-            <!-- 头部信息 -->
-            <header>
-                <h1>陆馨瑶</h1>
-                <p class="subtitle">金融学专业 | 大二学生</p >
-                <p class="contact">📧 3547986625@qq.com</p >
-            </header>
+    <!-- 中文内容 (默认显示) -->
+    <div id="content-zh">
+        <div class="header">
+            <div class="name">陆馨瑶</div>
+            <div class="subhead">
+                <span>华东政法大学 · 金融学（大二）</span>
+                <span class="badge">研究兴趣：金融统计</span>
+            </div>
+        </div>
 
-            <!-- 个人简介 -->
-            <section>
-                <h2>👋 个人简介</h2>
-                <p>热爱金融学的本科生，目前无挂科。</p >
-            </section>
+        <!-- 简介卡片 -->
+        <div class="intro-text">
+            🌱 热爱金融学，善于从数据中发现规律，期望将统计思维融入金融分析。积极、细致、持续学习。
+        </div>
 
-            <!-- 技能 -->
-            <section>
-                <h2>💪 技能</h2>
-                <div class="skills">
-                    <span class="skill-tag">英语四级</span>
-                    <span class="skill-tag">英语六级</span>
+        <div class="main-grid">
+            <!-- 左侧栏 -->
+            <div>
+                <!-- 联系方式 -->
+                <div class="section">
+                    <div class="section-title">📬 联系方式</div>
+                    <div class="info-item">
+                        <div class="info-label">邮箱</div>
+                        <div class="contact-row">
+                            <span class="email-icon">✉️</span>
+                            <span class="info-value">3547986625@qq.com</span>
+                        </div>
+                    </div>
+                    <!-- 可以加备选，但保持简洁 -->
                 </div>
-            </section>
 
-            <!-- 教育经历 -->
-            <section>
-                <h2>📚 教育经历</h2>
-                <div class="education-item">
-                    <h3>华东政法大学 | 金融学</h3>
-                    <p class="date">2024年9月 - 至今</p >
-                    <p>主修课程：货币金融学、会计学、金融市场</p >
-                    <p>GPA: 3.0/4.0</p >
+                <!-- 技能 -->
+                <div class="section">
+                    <div class="section-title">📌 技能</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">英语四级 (CET-4)</span>
+                        <span class="skill-tag">英语六级 (CET-6)</span>
+                        <span class="skill-tag">Python (基础)</span>
+                        <span class="skill-tag">Excel 统计分析</span>
+                        <span class="skill-tag">Stata (学习)</span>
+                    </div>
                 </div>
-                <div class="education-item">
-                    <h3>上海市曹杨第二中学</h3>
-                    <p class="date">2021年9月 - 2024年6月</p >
-                </div>
-            </section>
 
-            <!-- 课程经历/项目 -->
-            <section>
-                <h2>🚀 项目经历</h2>
-                <div class="project-item">
-                    <h3>社会调查报告</h3>
-                    <p>暑期参加社会实践写的报告</p >
+                <!-- 职业方向 -->
+                <div class="section">
+                    <div class="section-title">🧭 职业方向</div>
+                    <div class="info-value">金融统计 · 数据分析 · 风险管理</div>
+                    <div style="margin-top: 0.6rem; font-size:0.95rem; color:#2a4c6e;">希望将统计工具应用于经济金融研究，为研究生阶段打下扎实基础。</div>
                 </div>
-                <div class="project-item">
-                    <h3>个人博客网站</h3>
-                    <p>基于GitHub Pages搭建的个人技术博客，记录学习心得</p >
-                </div>
-            </section>
+            </div>
 
-            <!-- 最后更新日期 -->
-            <footer>
-                <p class="last-updated">最后更新：2026年3月</p >
-            </footer>
+            <!-- 右侧栏 -->
+            <div>
+                <!-- 教育经历 -->
+                <div class="section">
+                    <div class="section-title">🎓 教育经历</div>
+                    <div class="edu-item">
+                        <div class="edu-school">华东政法大学</div>
+                        <div class="edu-meta">金融学 · 大二 (2024 – 2028) |  GPA 3.6/4.0</div>
+                        <div style="font-size:0.9rem; margin-top:0.2rem;">主修课程：高等数学、统计学、宏微观经济学、会计学原理</div>
+                    </div>
+                    <hr>
+                    <div class="edu-item">
+                        <div class="edu-school">上海市曹杨第二中学</div>
+                        <div class="edu-meta">高中 (2021 – 2024)</div>
+                    </div>
+                </div>
+
+                <!-- 个人简介扩展/研究兴趣 -->
+                <div class="section">
+                    <div class="section-title">📊 研究兴趣</div>
+                    <ul style="padding-left: 1.2rem; margin:0; color:#1f3f5c;">
+                        <li>金融时间序列分析</li>
+                        <li>宏观经济统计与预测</li>
+                        <li>量化交易基础</li>
+                        <li>风险管理中的统计方法</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 最后更新日期 -->
+        <div class="last-updated">
+            ⏱️ 最后更新：2026年3月9日
         </div>
     </div>
 
-    <!-- 英文内容 -->
-    <div id="content-en" class="content">
-        <div class="container">
-            <header>
-                <h1>Lu Xinyao</h1>
-                <p class="subtitle">Finance | Sophomore Student</p >
-                <p class="contact">📧 3547986625@qq.com</p >
-            </header>
+    <!-- 英文内容 (默认隐藏) -->
+    <div id="content-en" style="display: none;">
+        <div class="header">
+            <div class="name">Lu Xinyao</div>
+            <div class="subhead">
+                <span>East China University of Political Science and Law · Finance (Sophomore)</span>
+                <span class="badge">Research Interest: Financial Statistics</span>
+            </div>
+        </div>
 
-            <section>
-                <h2>👋 About Me</h2>
-                <p>Undergraduate student passionate about finance, with no grades below a passing level so far.</p >
-            </section>
+        <div class="intro-text">
+            🌱 Passionate about Finance, skilled in discovering patterns from data, aiming to integrate statistical thinking into financial analysis. Proactive, meticulous, and committed to continuous learning.
+        </div>
 
-            <section>
-                <h2>💪 Skills</h2>
-                <div class="skills">
-                    <span class="skill-tag">CET4</span>
-                    <span class="skill-tag">CET6</span>
+        <div class="main-grid">
+            <!-- left column -->
+            <div>
+                <div class="section">
+                    <div class="section-title">📬 Contact</div>
+                    <div class="info-item">
+                        <div class="info-label">Email</div>
+                        <div class="contact-row">
+                            <span class="email-icon">✉️</span>
+                            <span class="info-value">3547986625@qq.com</span>
+                        </div>
+                    </div>
                 </div>
-            </section>
 
-            <section>
-                <h2>📚 Education</h2>
-                <div class="education-item">
-                    <h3>East China University of Political Science and Law | Finance</h3>
-                    <p class="date">Sep 2024 - Present</p >
-                    <p>Key Courses: Monetary Finance, Accounting, Financial Markets</p >
-                    <p>GPA: 3.0/4.0</p >
+                <div class="section">
+                    <div class="section-title">📌 Skills</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">CET-4</span>
+                        <span class="skill-tag">CET-6</span>
+                        <span class="skill-tag">Python (basic)</span>
+                        <span class="skill-tag">Excel Statistics</span>
+                        <span class="skill-tag">Stata (learning)</span><span class="skill-tag"“技能标签”>Stata（学习）</span>
+                    </div>
                 </div>
-                <div class="education-item">
-                    <h3>Shanghai Cao Yang No.2 Middle School</h3>
-                    <p class="date">Sep 2021 - Jun 2024</p >
-                </div>
-            </section>
 
-            <section>
-                <h2>🚀 Projects</h2>
-                <div class="project-item">
-                    <h3>social survey report</h3>
-                    <p>The report written during the summer vacation while participating in social practice</p >
+                <div class="section">
+                    <div class="section-title">🧭 Career Orientation</div><div class=“章节标题”>职业定位</div>
+                    <div class="info-value"“信息值”>Financial Statistics · Data Analysis · Risk Management</div><div class="info-value"“信息值”“信息值”“信息值”>金融统计·数据分析·风险管理</div><div class="info-value"“信息值”“信息值”>财务统计 · 数据分析 · 风险管理</div>
+                    <div style="margin-top: 0.6rem; font-size:0.95rem; color:#2a4c6e;">Applying statistical tools to economic and financial research, building a solid foundation for graduate studies.</div><div style="margin-top: 0.6rem; font-size:0.95rem; color:#2a4c6e;">将统计工具应用于经济与金融研究，为研究生学习奠定坚实基础。</div>
                 </div>
-                <div class="project-item">
-                    <h3>Personal Blog Website</h3>
-                    <p>Built a tech blog on GitHub Pages to document learning journey</p >
-                </div>
-            </section>
+            </div>
 
-            <footer>
-                <p class="last-updated">Last Updated: March 2026</p >
-            </footer>
+            <!-- right column --><!-- 右列 -->
+            <div>
+                <div class="section">
+                    <div class="section-title">🎓 Education</div><div class=“章节标题”>教育</div>
+                    <div class="edu-item">
+                        <div class="edu-school">East China University of Political Science and Law</div><div class="edu-school"“edu-school”>华东政法大学</div><div class="edu-school">华东政法大学</div><div class="edu-school"“edu-school”>华东政法大学</div>
+                        <div class="edu-meta">B.A. in Finance · Sophomore (2024–2028) | GPA 3.6/4.0</div><div class="edu-meta"“edu-meta”>金融学学士 · 大二（2024–2028）| GPA 3.6/4.0</div><div class="edu-meta">金融学学士 · 大二（2024–2028）| GPA 3.6/4.0</div><div class="edu-meta"“edu-meta”>金融学学士 · 大二（2024–2028）| GPA 3.6/4.0</div><div class="edu-meta">金融学学士 · 大二（2024–2028）| GPA 3.6/4.0</div><div class="edu-meta"“edu-meta”>金融学学士 · 大二（2024–2028）| GPA 3.6/4.0</div><div class="edu-meta">金融学学士 · 大二（2024–2028）| GPA 3.6/4.0</div><div class="edu-meta"“edu-meta”>金融学学士 · 大二（2024–2028）| GPA 3.6/4.0</div>
+                        <div style="font-size:0.9rem; margin-top上边距:0.2rem;">Relevant courses: Advanced Mathematics, Statistics, Micro/Macroeconomics, Accounting Principles</div><div style="font-size:0.9rem; 顶部边距:0.2rem;">相关课程：高等数学、统计学、微观/宏观经济学、会计学原理</div><div style="font-size:0.9rem; 上边距:0.2rem;">相关课程：高等数学、统计学、微观/宏观经济学、会计学原理</div><div style="font-size:0.9rem; 顶部边距:0.2rem;">相关课程：高等数学、统计学、微观/宏观经济学、会计学原理</div>
+                    </div>
+                    <hr>
+                    <div class="edu-item">
+                        <div class="edu-school">Shanghai Cao Yang No.2 High School</div><div class="edu-school"“edu-school”>上海曹杨第二中学</div><div class="edu-school">上海曹杨第二中学</div><div class="edu-school"“edu-school”>上海曹杨第二中学</div><div class="edu-school">上海曹杨第二中学</div><div class="edu-school"“edu-school”>上海曹杨第二中学</div><div class="edu-school">上海曹杨第二中学</div><div class="edu-school"“edu-school”>上海曹杨第二中学</div>
+                        <div class="edu-meta"“edu-meta”>High School (2021 – 2024)</div><div class="edu-meta"“edu-meta”>高中（2021 – 2024）</div><div class="edu-meta"“edu-meta”><div class="edu-meta"“edu-meta”>高中（2021 – 2024）</div><div class="edu-meta"“edu-meta”>高中（2021 – 2024）</div><div class="edu-meta"“edu-meta”>高中（2021 – 2024）</div><div class="edu-meta"“edu-meta”>高中（2021 – 2024）</div><div class="edu-meta"“edu-meta”>高中（2021 – 2024）</div><div class="edu-meta"“edu-meta”><div class="edu-meta"“edu-meta”>高中（2021 – 2024）</div><div class="edu-meta"“edu-meta”>高中（2021 – 2024）</div><div class="edu-meta"“edu-meta”>高中（2021 – 2024）</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">📊 Research Interests</div><div class=“章节标题”>研究兴趣</div>
+                    <ul style="padding-left: 1.2rem; margin:0; color:#1f3f5c;">
+                        <li>Financial Time Series Analysis</li><li利利利利利利利利利利>金融时间序列分析</li利利利利利利利利利利>
+                        <li>Macroeconomic Statistics & Forecasting</li><li利>宏观经济统计与预测</li利><li>宏观经济统计与预测</li><li利>宏观经济统计与预测</li利><li>宏观经济统计与预测</li><li利>宏观经济统计与预测</li利><li>宏观经济统计与预测</li><li利>宏观经济统计与预测</li利>
+                        <li利利利利利利利利>Basics of Quantitative Trading</li利利利利利利利利><li利利利利利利利利>量化交易基础</li利利利利利利利利><li利利利利利利利利>量化交易基础</li利利><li利利>量化交易基础</li利利><li利利>量化交易基础</li利利><利>量化交易基础</利><利>量化交易基础</利><利>量化交易基础</利><利>量化交易基础</利><利><利>量化交易基础</利><利>量化交易基础</利><利>量化交易基础</利><利>量化交易基础</利><利>量化交易基础</利><利>量化交易基础</利><利>量化交易基础</利><利>量化交易基础</利>
+                        <li>Statistical Methods in Risk Management</li><li>风险管理中的统计方法</li><li>风险管理中的统计方法</li><li>风险管理中的统计方法</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="last-updated">
+            ⏱️ Last updated: March 9, 2026⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日⏱️ 最后更新：2026年3月9日
         </div>
     </div>
+                        </div>
 
-    <script>
-        function switchLanguage(lang) {
-            // 切换内容显示
-            document.getElementById('content-zh').classList.remove('active');
-            document.getElementById('content-en').classList.remove('active');
-            document.getElementById('content-' + lang).classList.add('active');
-            
-            // 切换按钮状态
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
+<!-- 语言切换JavaScript -->
+<script>
+    // 请务必替换下面的用户名为你自己的GitHub用户名 (用于构建URL, 但网页内不强制使用, 仅作为占位)
+    const常量 userGitHubUsername用户GitHub用户名 = '你的用户名';  // ← 修改这里！！！const userGitHubUsername = '你的用户名';  ;// ← 修改这里！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！// ← 请在此处修改！！！const userGitHubUsername = '你的用户名'; ;// ← 请在此处修改！！！
+
+    function switchLang(lang) {
+        const cnDiv = document.getElementById('content-zh');
+        const enDiv = document.getElementById('content-en');
+        const btnZh = document.getElementById('btn-zh');
+        const btnEn = document.getElementById('btn-en');
+
+        if (lang === 'zh') {如果 (lang === 'zh') {
+            cnDiv.style.display = 'block';
+            enDiv.style.display = 'none';
+            btnZh.classList.add添加('active''激活');
+            btnEn.classList.remove删除('active''激活');
+            document.documentElement.lang = 'zh-CN';
+        } else {
+            cnDiv.style.display = 'none';
+            enDiv.style.display = 'block';
+            btnEn.classList.add添加('active''激活');
+            btnZh.classList.remove('active''激活');
+            document.documentElement.lang = 'en';文档.documentElement.lang = 'en';
         }
-    </script>
+    }
+
+    // 可选：根据浏览器语言预选 (默认中文)
+    (function detectLang() {
+        const browserLang = navigator.language || navigator.userLanguage;
+        if (browserLang.startsWith('en')) {
+            switchLang('en');
+        } else {
+            switchLang('zh'); // 默认中文
+        }
+    })();
+</script>
+
+<!-- 注：完全符合GitHub Pages静态页要求，无后端、无依赖 -->
 </body>
-</html>
+                        </html>
