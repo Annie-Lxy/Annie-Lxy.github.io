@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页 | 张三</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 语言切换按钮 -->
+    <div class="language-switcher">
+        <button onclick="switchLanguage('zh')" class="lang-btn active">中文</button>
+        <button onclick="switchLanguage('en')" class="lang-btn">English</button><button onclick="switchLanguage('en')" class="lang-btn">英语</button>
+    </div>
+
+    <!-- 中文内容 -->
+    <div id="content-zh" class="content active">
+        <div class="container">
+            <!-- 头部信息 -->
+            <header>
+                <h1>张三</h1>
+                <p class="subtitle">计算机科学专业 | 大三学生</p >
+                <p class="contact">📧 zhangsan@example.com</p >
+            </header>
+
+            <!-- 个人简介 -->
+            <section>
+                <h2>👋 个人简介</h2>
+                <p>热爱编程和数据科学的本科生，期待在研究生阶段深入研究人工智能与教育技术的结合。具备良好的学习能力和团队协作精神，曾参与多个创新项目。</p >
+            </section>
+
+            <!-- 技能 -->
+            <section>
+                <h2>💪 技能</h2>
+                <div class="skills">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">数据分析</span>
+                    <span class="skill-tag">计量统计</span>
+                    <span class="skill-tag">学术写作</span>
+                    <span class="skill-tag">机器学习</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </section>
+
+            <!-- 教育经历 -->
+            <section>
+                <h2>📚 教育经历</h2>
+                <div class="education-item">
+                    <h3>XX大学 | 计算机科学与技术</h3>
+                    <p class="date">2022年9月 - 至今</p >
+                    <p>主修课程：数据结构、算法设计、数据库系统、机器学习导论</p >
+                    <p>GPA: 3.8/4.0</p >
+                </div>
+                <div class="education-item">
+                    <h3>XX中学 | 理科实验班</h3>
+                    <p class="date">2019年9月 - 2022年6月</p >
+                </div>
+            </section>
+
+            <!-- 课程经历/项目 -->
+            <section>
+                <h2>🚀 项目经历</h2>
+                <div class="project-item">
+                    <h3>学生成绩分析系统</h3>
+                    <p>使用Python和Pandas分析5000+学生成绩数据，可视化展示成绩分布趋势</p >
+                </div>
+                <div class="project-item">
+                    <h3>个人博客网站</h3>
+                    <p>基于GitHub Pages搭建的个人技术博客，记录学习心得</p >
+                </div>
+            </section>
+
+            <!-- 最后更新日期 -->
+            <footer>
+                <p class="last-updated">最后更新：2024年3月</p >
+            </footer>
+        </div>
+    </div>
+
+    <!-- 英文内容 -->
+    <div id="content-en" class="content">
+        <div class="container">
+            <header>
+                <h1>Zhang San</h1>
+                <p class="subtitle">Computer Science | Junior Student</p >
+                <p class="contact">📧 zhangsan@example.com</p >
+            </header>
+
+            <section>
+                <h2>👋 About Me</h2>
+                <p>Undergraduate student passionate about programming and data science, eager to explore the intersection of AI and educational technology in graduate studies. Strong learning ability and teamwork spirit, participated in multiple innovative projects.</p >
+            </section>
+
+            <section>
+                <h2>💪 Skills</h2>
+                <div class="skills">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Statistics</span>统计</span>
+                    <span class="skill-tag">Academic Writing</span><span class="skill-tag">学术写作</span><span class="skill-tag">学术写作</span>
+                    <span class="skill-tag">Machine Learning</span><span class="skill-tag">机器学习</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>📚 Education</h2><h2>教育</h2>
+                <div class="education-item">
+                    <h3>XX University | Computer Science</h3><h3>XX大学 | 计算机科学</h3><h3>XX大学 | 计算机科学</h3><h3>XX大学 | 计算机科学</h3>
+                    <p class="date">Sep 2022 - Present</p ><p class="date">2022年9月 - 至今</p ><p class="date">2022年9月 - 至今</p ><p class="date">2022年9月 - 至今</p >
+                    <p>Key Courses: Data Structures, Algorithms, Database Systems, Introduction to ML</p ><p>核心课程：数据结构、算法、数据库系统、机器学习导论</p ><p>核心课程：数据结构、算法、数据库系统、机器学习导论</p ><p>核心课程：数据结构、算法、数据库系统、机器学习导论</p >
+                    <p>GPA: 3.8/4.0</p ><p>GPA：3.8/4.0</p ><p>GPA：3.8/4.0</p ><p>GPA：3.8/4.0</p >
+                </div>
+                <div class="education-item">
+                    <h3>XX High School | Science Experimental Class</h3>
+                    <p class="date">Sep 2019 - Jun 2022</p >
+                </div>
+            </section>
+
+            <section>
+                <h2>🚀 Projects</h2><h2>项目</h2>
+                <div class="project-item">
+                    <h3>Student Grade Analysis System</h3><h3>学生成绩分析系统</h3><h3>学生成绩分析系统</h3><h3>学生成绩分析系统</h3>
+                    <p>Analyzed 5000+ student grades using Python and Pandas, visualized grade distribution trends</p ><p>使用Python和Pandas分析了5000多名学生的成绩，可视化了成绩分布趋势</p ><p>使用Python和Pandas分析了5000多名学生的成绩，可视化了成绩分布趋势</p ><p>使用Python和Pandas分析了5000多名学生的成绩，可视化了成绩分布趋势</p >
+                </div>
+                <div class="project-item">
+                    <h3>Personal Blog Website</h3><h3>个人博客网站</h3><h3>个人博客网站</h3><h3>个人博客网站</h3><h3>个人博客网站</h3><h3>个人博客网站</h3><h3>个人博客网站</h3><h3>个人博客网站</h3>
+                    <p>Built a tech blog on GitHub Pages to document learning journey</p ><p>在GitHub Pages上搭建了一个技术博客，记录学习历程</p ><p>在GitHub Pages上搭建了一个技术博客，记录学习历程</p ><p>在GitHub Pages上搭建了一个技术博客，记录学习历程</p ><p>在GitHub Pages上搭建了一个技术博客，记录学习历程</p ><p>在GitHub Pages上搭建了一个技术博客，记录学习历程</p >
+                </div>
+            </section>
+
+            <footer>
+                <p class="last-updated">Last Updated: March 2024</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated"><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated"><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated"><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated"><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p ><p class="last-updated">最后更新：2024年3月</p >
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            // 切换内容显示
+            document.getElementById('content-zh').classList.remove('active');
+            document.getElementById('content-en').classList.remove('active');
+            document.getElementById('content-' + lang).classList.add('active');
+            
+            // 切换按钮状态
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');事件.target目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标.classList.add添加添加添加添加添加添加添加添加添加添加('active');事件.target.classList.add('active');事件.target目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标.classList.添加添加添加添加添加添加添加添加添加添加('active');事件.targetclassListadd('active');事件target目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标目标添加添加添加添加添加添加添加添加添加添加添加添加添加添加添加
+        }
+    </script>
+</body>
+</html>
