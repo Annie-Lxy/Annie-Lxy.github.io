@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陆馨瑶 · 金融学</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        .card {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 40px -12px rgba(0,20,40,0.25);
+            padding: 2.5rem;
+            position: relative;
+            border: 1px solid #e2eaf1;
+        }
+        /* 语言切换按钮 - 简单可靠的样式 */
+        .lang-bar {
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+            display: flex;
+            gap: 0.5rem;
+            background: #edf2f7;
+            padding: 4px;
+            border-radius: 40px;
+            border: 1px solid #d0d9e3;
+            z-index: 10;
+        }
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            color: #3f5468;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: white;
+            color: #0a1e2f;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            font-weight: 600;
+            border: 1px solid #b8c7d9;
+        }
+        .lang-btn:hover {
+            background: #ffffff80;
+        }
+        /* 头部 */
+        .header {
+            margin-bottom: 2rem;
+            padding-right: 140px;
+        }
+        .name {
+            font-size: 3rem;
+            font-weight: 650;
+            color: #0a2640;
+            margin-bottom: 0.25rem;
+            line-height: 1.2;
+        }
+        .subhead {
+            font-size: 1.2rem;
+            color: #2e4b6b;
+            border-bottom: 2px solid #dfe8f2;
+            padding-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: #e2ebf5;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #1f4970;
+            font-weight: 500;
+        }
+        /* 网格布局 */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        /* 区块样式 */
+        .block {
+            background: #f8fbfe;
+            border-radius: 24px;
+            padding: 1.5rem 1.8rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #dbe4ee;
+        }
+        .block h3 {
+            font-size: 1.2rem;
+            font-weight: 620;
+            margin-bottom: 1rem;
+            color: #143450;
+            border-left: 5px solid #54738f;
+            padding-left: 1rem;
+        }
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 0.8rem 0;
+        }
+        .email-box {
+            background: #e3ecf5;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+        .skill-item {
+            background: white;
+            border: 1px solid #c7d5e6;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1f3c57;
+        }
+        .edu-school {
+            font-weight: 650;
+            font-size: 1.1rem;
+        }
+        .edu-detail {
+            color: #3e5f7c;
+            margin: 0.2rem 0 0.4rem;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #d4e0eb;
+            margin: 1rem 0;
+        }
+        ul {
+            padding-left: 1.3rem;
+            color: #1d3c59;
+        }
+        li {
+            margin: 0.5rem 0;
+        }
+        .last-update {
+            margin-top: 2rem;
+            text-align: right;
+            color: #6b859e;
+            font-size: 0.85rem;
+            border-top: 1px dashed #cbd7e6;
+            padding-top: 1rem;
+        }
+        .intro {
+            background: white;
+            padding: 1.2rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid #d1deec;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: #1f3f5c;
+        }
+        @media (max-width: 700px) {
+            .card { padding: 1.8rem; }
+            .lang-bar { position: static; justify-content: flex-end; margin-bottom: 1.5rem; }
+            .header { padding-right: 0; }
+            .grid { grid-template-columns: 1fr; }
+            .name { font-size: 2.5rem; }
+        }
+    </style>
+    </head>
+<body>
+
+<div class="card">
+    <!-- 语言切换按钮 - 现在确保正常工作 -->
+    <div class="lang-bar">
+        <button class="lang-btn active" onclick="setLanguage('zh')">🇨🇳 中文</button>
+        <button class="lang-btn" onclick="setLanguage('en')">🇬🇧 English</button>
+    </div>
+
+    <!-- 中文内容 -->
+    <div id="content-zh">
+        <div class="header">
+            <div class="name">陆馨瑶</div>
+            <div class="subhead">
+                <span>华东政法大学 · 金融学 (大二)</span>
+                <span class="tag">金融统计方向</span>
+            </div>
+        </div>
+
+        <div class="intro">
+            📊 热爱金融学的大二学生，善于从数据中发现规律，期望将统计思维融入金融分析，为研究生阶段打好基础。
+        </div>
+
+        <div class="grid">
+            <!-- 左列 -->
+            <div>
+                <!-- 联系方式 -->
+                <div class="block">
+                    <h3>📬 联系方式</h3>
+                    <div class="contact-row">
+                        <div class="email-box">✉️</div>
+                        <div style="font-size: 1.1rem;">3547986625@qq.com</div>
+                    </div>
+                </div>
+
+                <!-- 技能 -->
+                <div class="block">
+                    <h3>📌 技能</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">英语四级 (CET-4)</span>
+                        <span class="skill-item">英语六级 (CET-6)</span>
+                        <span class="skill-item">Python (基础)</span>
+                        <span class="skill-item">Excel 统计分析</span>
+                        <span class="skill-item">Stata (学习中)</span>
+                    </div>
+                </div>
+
+                <!-- 职业方向 -->
+                <div class="block">
+                    <h3>🧭 职业方向</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">金融统计 · 数据分析 · 风险管理</p >
+                    <p style="color: #2c577d;">希望将统计工具应用于金融研究</p >
+                </div>
+            </div>
+
+            <!-- 右列 -->
+            <div>
+                <!-- 教育经历 -->
+                <div class="block">
+                    <h3>🎓 教育经历</h3>
+                    <div>
+                        <div class="edu-school">华东政法大学</div>
+                        <div class="edu-detail">金融学 · 2024级 | GPA 3.6/4.0</div>
+                        <div style="margin: 0.5rem 0 1rem;">主修：高等数学、统计学、宏微观经济学</div>
+                    </div>
+                    <hr>
+                    <div>
+                        <div class="edu-school">上海市曹杨第二中学</div>
+                        <div class="edu-detail">高中 · 2021-2024</div>
+                    </div>
+                </div>
+
+                <!-- 研究兴趣 -->
+                <div class="block">
+                    <h3>📊 研究兴趣</h3>
+                    <ul>
+                        <li>金融时间序列分析</li>
+                        <li>宏观经济统计与预测</li>
+                        <li>量化交易基础</li>
+                        <li>风险管理统计方法</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="last-update">
+            ⏱️ 最后更新：2026年3月9日
+        </div>
+    </div>
+
+    <!-- 英文内容 -->
+    <div id="content-en" style="display: none;">
+        <div class="header">
+            <div class="name">Lu Xinyao</div>
+            <div class="subhead">
+                <span>ECUPL · Finance (Sophomore)</span>
+                <span class="tag">Financial Statistics</span>
+            </div>
+        </div>
+
+        <div class="intro">
+            📊 Finance student passionate about data analysis. Looking to apply statistical thinking to financial research.
+        </div>
+
+        <div class="grid">
+            <div>
+                <div class="block">
+                    <h3>📬 Contact</h3>
+                    <div class="contact-row">
+                        <div class="email-box">✉️</div>
+                        <div style="font-size: 1.1rem;">3547986625@qq.com</div>
+                    </div>
+                </div>
+
+                <div class="block">
+                    <h3>📌 Skills</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">CET-4</span>
+                        <span class="skill-item">CET-6</span>
+                        <span class="skill-item">Python (Basic)</span>
+                        <span class="skill-item">Excel Statistics</span>
+                        <span class="skill-item">Stata (Learning)</span>
+                    </div>
+                </div>
+
+                <div class="block">
+                    <h3>🧭 Career Interest</h3>
+                    <p style="font-size: 1.1rem;">Financial Statistics · Data Analysis · Risk Management</p >
+                </div>
+            </div>
+
+            <div>
+                <div class="block">
+                    <h3>🎓 Education</h3>
+                    <div>
+                        <div class="edu-school">East China University of Political Science and Law</div>
+                        <div class="edu-detail">Finance · 2024-2028 | GPA 3.6/4.0</div>
+                    </div>
+                    <hr>
+                    <div>
+                        <div class="edu-school">Shanghai Cao Yang No.2 High School</div>
+                        <div class="edu-detail">2021-2024</div>
+                    </div>
+                </div>
+
+                <div class="block">
+                    <h3>📊 Research Interests</h3>
+                    <ul>
+                        <li>Financial Time Series</li>
+                        <li>Macroeconomic Statistics</li>
+                        <li>Quantitative Trading Basics</li>
+                        <li>Risk Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="last-update">
+            ⏱️ Last Updated: March 9, 2026
+        </div>
+    </div>
+</div>
+
+<script>
+function setLanguage(lang) {
+    // 获取中英文内容
+    const zhDiv = document.getElementById('content-zh');
+    const enDiv = document.getElementById('content-en');
+    // 获取两个按钮
+    const btns = document.querySelectorAll('.lang-btn');
+    
+    if (lang === 'zh') {
+        zhDiv.style.display = 'block';
+        enDiv.style.display = 'none';
+        btns[0].classList.add('active');
+        btns[1].classList.remove('active');
+    } else {
+        zhDiv.style.display = 'none';
+        enDiv.style.display = 'block';
+        btns[1].classList.add('active');
+        btns[0].classList.remove('active');
+    }
+}
+
+// 默认显示中文
+setLanguage('zh');
+</script>
+
+</body>
+</html>
